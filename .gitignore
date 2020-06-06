@@ -1,0 +1,46 @@
+HELP.md
+### 忽略所有的target文件夹  ###
+target/
+### 不忽略.mvn/wrapper/maven-wrapper.jar文件  ###
+# !.mvn/wrapper/maven-wrapper.jar
+
+### 不忽略**/src/main/**文件  ###
+!**/src/main/**
+### 不忽略**/src/test/**文件  ###
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+### 忽略当前文件夹下的.idea文件夹 ###
+/.idea/
+*.iws
+*.iml
+*.ipr
+
+
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+### maven ###
+### 忽略当前文件夹下的.mvn文件夹，不会忽略subDir/.mvn ###
+/.mvn/
+
+### out:忽略普通java工程的编译输出目录 ###
+/out/
