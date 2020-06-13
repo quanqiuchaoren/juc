@@ -9,7 +9,7 @@ import java.util.concurrent.FutureTask;
  */
 public class CallableDemo {
     public static void main(String[] args) {
-        // 创建我们写的可调用类实例
+        // 创建我们写的可调用类实例，可调用类实例可以被多个任务类共享
         CallableImpl callableImpl = new CallableImpl();
         // 将可调用类作为构造参数，创建一个线程任务类实例
         FutureTask<Integer> futureTask0 = new FutureTask<>(callableImpl);
