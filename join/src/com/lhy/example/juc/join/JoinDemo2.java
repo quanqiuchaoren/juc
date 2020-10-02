@@ -1,7 +1,8 @@
 package com.lhy.example.juc.join;
 
 /**
- * Created by Enzo Cotter on 2020/6/6.
+ * join()的使用
+ *      注释掉join()方法之后，则主线程可能在thread1执行完毕之前执行
  */
 public class JoinDemo2 {
     public static void main(String[] args) throws InterruptedException {

@@ -1,7 +1,8 @@
 package com.lhy.example.juc.join;
 
 /**
- * Created by Enzo Cotter on 2020/6/6.
+ * join()方法的使用
+ *      可传入一个超时时间
  */
 public class JoinDemo4 {
     public static void main(String[] args) throws InterruptedException {

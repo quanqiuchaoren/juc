@@ -1,12 +1,14 @@
 package com.lhy.example.juc.join;
 
+import java.util.concurrent.TimeUnit;
+
 /**
- * Created by Enzo Cotter on 2020/6/6.
+ * join()方法的基本使用
+ *      当前线程调用其他线程的join()之后，则当前线程会阻塞，知道被调用的线程执行完毕
  */
 public class JoinDemo1 {
     public static void main(String[] args) throws InterruptedException {
         ThreadImpl thread1 = new ThreadImpl();
-
         thread1.start();
         /**
          * 在当前线程里面调用其他线程实例的join()方法，
