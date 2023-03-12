@@ -1,7 +1,7 @@
 package cn.lhy.example.juc.thread;
 
 /**
- * 使用静态同步方法解决线程安全问题
+ * 使用静态同步方法解决线程安全问题：多个线程卖票问题
  */
 public class StaticSynchronizedMethodDemo {
     public static void main(String[] args) {
@@ -21,8 +21,7 @@ class StaticSynchronizedMethodThread implements Runnable{
         }
     }
     /**
-     * Object对象内置了一把锁，就是同步锁，其他的类继承了Object对象，所以也会有一把锁
-     * 同步方法想要执行，需要获得同步锁，而这把锁即是当前对象this
+     * 静态方法的同步锁：即当前类的Class对象
      */
     private static synchronized void  sellTicket() {
         if (0 < ticketNumber){
@@ -37,7 +36,7 @@ class StaticSynchronizedMethodThread implements Runnable{
             System.out.println("卖票结束，程序退出");
             /**
              * 由于在一个方法中单独使用break不能使调用方法的死循环退出，
-             *      所以使用System.exit(0)来让线程死亡，以此结束循环
+             *      所以使用System.exit(0)来让进程死亡，以此结束循环
              * 也可随意使用判断返回值的方式来让线程退出
              */
             System.exit(0);

@@ -3,7 +3,9 @@ package cn.lhy.example.juc.thread;
 /**
  * 线程安全问题典型案例：多个线程售卖同一批票
  * 会出现线程安全问题：同一张票被多个线程卖出
- * 会出现两个问题，第一种是多个线程售卖出了同一张票，而是第二种是票超售，会被卖到为负的
+ * 会出现两个问题，
+ *      第一种是多个线程售卖出了同一张票，
+ *      第二种是票超售，会被卖到为负的
  */
 public class TicketSaleNotSafe {
     public static void main(String[] args) {

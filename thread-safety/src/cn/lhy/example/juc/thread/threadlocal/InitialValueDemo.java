@@ -1,9 +1,9 @@
-package cn.lhy.example.juc.thread;
+package cn.lhy.example.juc.thread.threadlocal;
 
 /**
  * Created by Enzo Cotter on 2020/6/10.
  */
-public class ThreadLocalDemo {
+public class InitialValueDemo {
 
     public static void main(String[] args) {
         // 分配给每个线程20张票

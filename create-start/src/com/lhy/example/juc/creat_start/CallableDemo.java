@@ -1,11 +1,16 @@
 package com.lhy.example.juc.creat_start;
 
+import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 
 /**
- * 创建线程的第三种办法，运行这个程序，会看到主线程，由主线程创建的两个线程，这三个线程之间交替执行
+ * 创建线程的第三种办法：使用Callable接口，这种办法，线程可以有返回值
+ *      当然，如果其他线程想要获取返回值，当还没返回的时候，会让其他获取返回值的线程阻塞
+ * 运行这个程序，会看到主线程，由主线程创建的两个线程，这三个线程之间交替执行
+ *
  */
 public class CallableDemo {
     public static void main(String[] args) {
@@ -17,21 +22,14 @@ public class CallableDemo {
         String threadName0 = "thread-0";
         String threadName1 = "thread-1";
         // 将线程任务类实例作为构造参数，创建一个线程类实例，第二个参数为线程的名字
-        Thread callableDemo = new Thread(futureTask0, threadName0);
-        Thread callableDem1 = new Thread(futureTask1, threadName1);
-        for (int i = 0; i < 100; i++) {
-            // 获取线程名字
-            String mainThreadName = Thread.currentThread().getName();
-            System.out.println(mainThreadName + "第" + i + "次执行");
-            // 在执行到第5次循环的时候，启动线程
-            if(5 == i){
-                // 启动线程类，将线程类的实例加入可执行队列，供虚拟机调度
-                callableDemo.start();
-                callableDem1.start();
-            }
-        }
+        Thread thread1 = new Thread(futureTask0, threadName0);
+        Thread thread2 = new Thread(futureTask1, threadName1);
+        // 启动线程类，将线程类的实例加入可执行队列，供虚拟机调度
+        thread1.start();
+        thread2.start();
         // 获取线程执行体的返回值
         try {
+            // 子线程沉睡2秒，这里获取结果的时候
             Integer threadExecuteBodyResult0 = futureTask0.get();
             Integer threadExecuteBodyResult1 = futureTask1.get();
             System.out.println(threadName0 + "的线程执行体的返回值为->" + threadExecuteBodyResult0);
@@ -50,20 +48,17 @@ public class CallableDemo {
  * Callable是从jdk1.5开始有的
  */
 class CallableImpl implements Callable{
-
     /**
      * 重写call方法，这个call方法，类似于继承Runnable接口的时候的run方法，也是一个执行体
-     * @return
-     * @throws Exception
      */
     @Override
-    public Object call() throws Exception {
-        int i = 0;
-        for (; i < 100; i++) {
-            // 获取当前的线程的名字
-            String threadName = Thread.currentThread().getName();
-            System.out.println("当前的线程的名字" + threadName + ",第" + i + "次执行");
+    public Object call() {
+        try {
+            // 让线程沉睡2秒
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return i;
+        return new Random().nextInt();
     }
 }

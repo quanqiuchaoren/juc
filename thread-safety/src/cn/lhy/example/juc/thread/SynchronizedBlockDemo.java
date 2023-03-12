@@ -2,6 +2,8 @@ package cn.lhy.example.juc.thread;
 
 /**
  * 使用同步代码块来解决线程安全问题
+ * 使用加锁的方式，可以保证临界区内的代码的操作是原子性的，不可分割的
+ * 并且在加锁前，会将变量从主内存里面重新加载到线程的工作内存中
  */
 public class SynchronizedBlockDemo {
     public static void main(String[] args) {

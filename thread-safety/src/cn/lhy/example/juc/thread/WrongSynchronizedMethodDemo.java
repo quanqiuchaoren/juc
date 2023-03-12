@@ -28,8 +28,7 @@ class WrongStaticSynchronizedMethodThread implements Runnable{
         }
     }
     /**
-     * Object对象内置了一把锁，就是同步锁，其他的类继承了Object对象，所以也会有一把锁
-     * 同步方法想要执行，需要获得同步锁，而这把锁即是当前对象this
+     * 静态同步方法的同步锁是当前类的Class对象
      */
     private static synchronized void staticSellTicket() {
         if (0 < ticketNumber){
