@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 实验，达到核心线程数之后，阻塞队列也已经满，有新的请求时，如何处理
+ * 实验，达到最大线程数之后，阻塞队列也已经满，有新的请求时，如何处理
  * 默认的策略：AbortPolicy，中断提交任务到线程池，并抛出运行时异常RejectedExecutionException
  */
 public class DefaultRejectedExecutionHandler {
@@ -45,8 +45,6 @@ public class DefaultRejectedExecutionHandler {
         //第 - 0 -次提交的任务执行完毕
         //第 - 1 -次提交的任务开始执行
         //第 - 1 -次提交的任务执行完毕
-
-
     }
 }
 
