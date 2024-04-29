@@ -14,8 +14,15 @@ public class DiscardOldestPolicy {
         TimeUnit keepAliveTimeUnit = TimeUnit.SECONDS;
         BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<>(2);
         // 采用DiscardOldestPolicy，即丢弃掉队列中最老的请求，且不会抛出异常
-        ThreadPoolExecutor.DiscardOldestPolicy handler = new ThreadPoolExecutor.DiscardOldestPolicy();
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, keepAliveTimeUnit, blockingQueue, Executors.defaultThreadFactory(), handler);
+        ThreadPoolExecutor.DiscardOldestPolicy rejectPolicy = new ThreadPoolExecutor.DiscardOldestPolicy();
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+                corePoolSize, // 核心线程数
+                maximumPoolSize, // 最大线程数
+                keepAliveTime, keepAliveTimeUnit, // 线程保活时间
+                blockingQueue, // 阻塞队列
+                Executors.defaultThreadFactory(), // 线程工厂
+                rejectPolicy // 拒绝策略，默认的拒绝策略是拒绝当前请求，且抛出异常
+        );
         for (int i = 0; i < 5; i++) {
             int finalI = i;
             threadPoolExecutor.execute(() -> {
